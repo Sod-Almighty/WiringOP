@@ -2276,10 +2276,9 @@ void digitalWrite (int pin, int value)
 {
   struct wiringPiNodeStruct *node = wiringPiNodes ;
   /*add for BananaPro by LeMaker team*/
-	if(BPRVER == version)
-	{	
+	if(BPRVER == version) {	
 		if (wiringPiDebug)
-		printf ("%s,%d\n", __func__, __LINE__) ;
+			printf ("digitalWrite(%d, %d) @ %s,%d\n", pin, value, __func__, __LINE__) ;
 		if ((pin & PI_GPIO_MASK) == 0)		// On-Board Pin
 		{
 			/**/ if (wiringPiMode == WPI_MODE_GPIO_SYS)	// Sys mode
