@@ -1044,7 +1044,7 @@ int sunxi_get_gpio_mode(int pin)
  uint32_t phyaddr = SUNXI_GPIO_BASE + (bank * 36) + ((index >> 3) << 2);
  if (wiringPiDebug)
 		printf("func:%s pin:%d,  bank:%d index:%d phyaddr:0x%x\n",__func__, pin , bank,index,phyaddr); 
-	if(BP_PIN_MASK[bank][index] != -1)
+	if(BP_PIN_MASK[bank][index] != -1 || wiringPiMode == WPI_MODE_DIRECT)
 	 {
 			regval = readl(phyaddr);
 			if (wiringPiDebug)
@@ -1071,7 +1071,7 @@ void sunxi_set_gpio_mode(int pin,int mode)
  uint32_t phyaddr = SUNXI_GPIO_BASE + (bank * 36) + ((index >> 3) << 2);
 	if (wiringPiDebug)
 		printf("func:%s pin:%d, MODE:%d bank:%d index:%d phyaddr:0x%x\n",__func__, pin , mode,bank,index,phyaddr); 
-	if(BP_PIN_MASK[bank][index] != -1)
+	if(BP_PIN_MASK[bank][index] != -1 || wiringPiMode == WPI_MODE_DIRECT)
 	 {
 			regval = readl(phyaddr);
 			if (wiringPiDebug)
@@ -1143,7 +1143,7 @@ void sunxi_digitalWrite(int pin, int value)
 	 uint32_t phyaddr = SUNXI_GPIO_BASE + (bank * 36) + 0x10; // +0x10 -> data reg
 	   if (wiringPiDebug)
 			printf("func:%s pin:%d, value:%d bank:%d index:%d phyaddr:0x%x\n",__func__, pin , value,bank,index,phyaddr); 
-	 if(BP_PIN_MASK[bank][index] != -1)
+	 if(BP_PIN_MASK[bank][index] != -1 || wiringPiMode == WPI_MODE_DIRECT)
 	 {
 			regval = readl(phyaddr);
 			if (wiringPiDebug)
@@ -1181,7 +1181,7 @@ int sunxi_digitalRead(int pin)
 	uint32_t phyaddr = SUNXI_GPIO_BASE + (bank * 36) + 0x10; // +0x10 -> data reg
 	if (wiringPiDebug)
 			printf("func:%s pin:%d,bank:%d index:%d phyaddr:0x%x\n",__func__, pin,bank,index,phyaddr);
-	if(BP_PIN_MASK[bank][index] != -1)
+	if(BP_PIN_MASK[bank][index] != -1 || wiringPiMode == WPI_MODE_DIRECT)
 	{
 		regval = readl(phyaddr);
 		regval = regval >> index;
@@ -1207,7 +1207,7 @@ void sunxi_pullUpDnControl (int pin, int pud)
 	 uint32_t phyaddr = SUNXI_GPIO_BASE + (bank * 36) + 0x1c + sub*4; // +0x10 -> pullUpDn reg
 	   if (wiringPiDebug)
 			printf("func:%s pin:%d,bank:%d index:%d sub:%d phyaddr:0x%x\n",__func__, pin,bank,index,sub,phyaddr); 
-	 if(BP_PIN_MASK[bank][index] != -1)
+	 if(BP_PIN_MASK[bank][index] != -1 || wiringPiMode == WPI_MODE_DIRECT)
 	 {  //PI13~PI21 need check again
 			regval = readl(phyaddr);
 			if (wiringPiDebug)
