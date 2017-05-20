@@ -3108,6 +3108,15 @@ int wiringPiSetupGpio (void)
   return 0 ;
 }
 
+int wiringPiSetupDirect() {
+  (void)wiringPiSetup();
+
+  if (wiringPiDebug)
+    printf ("wiringPi: wiringPiSetupGpio called\n");
+
+  wiringPiMode = WPI_MODE_DIRECT;
+  return 0 ;
+}
 
 /*
  * wiringPiSetupPhys:
