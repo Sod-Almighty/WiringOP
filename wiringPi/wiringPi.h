@@ -165,10 +165,11 @@ extern int wiringPiFailure (int fatal, const char *message, ...) ;
 extern struct wiringPiNodeStruct *wiringPiFindNode (int pin) ;
 extern struct wiringPiNodeStruct *wiringPiNewNode  (int pinBase, int numPins) ;
 
-extern int  wiringPiSetup       (void) ;
-extern int  wiringPiSetupSys    (void) ;
-extern int  wiringPiSetupGpio   (void) ;
-extern int  wiringPiSetupPhys   (void) ;
+extern int  wiringPiSetup       (void);
+extern int  wiringPiSetupSys    (void);
+extern int  wiringPiSetupGpio   (void);
+extern int  wiringPiSetupPhys   (void);
+extern int  wiringPiSetupDirect (void);
 
 extern void pinModeAlt          (int pin, int mode) ;
 extern void pinMode             (int pin, int mode) ;
