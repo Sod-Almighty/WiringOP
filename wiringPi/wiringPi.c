@@ -1630,7 +1630,7 @@ int getAlt (int pin)
 			pin = physToGpio_BP[pin] ;
 		else if (wiringPiMode == WPI_MODE_GPIO) 
 			pin=pinTobcm_BP[pin];//need map A20 to bcm
-		else if (wiringPiMode == WPI_MODE_DIRECT) 
+		else if (wiringPiMode == WPI_MODE_DIRECT) {}
 			// leave well alone!
 		else return 0 ;
 
@@ -1648,7 +1648,7 @@ int getAlt (int pin)
     pin = pinToGpio [pin] ;
   else if (wiringPiMode == WPI_MODE_PHYS)
     pin = physToGpio [pin] ;
-  else if (wiringPiMode == WPI_MODE_DIRECT) 
+  else if (wiringPiMode == WPI_MODE_DIRECT) {}
     // leave well alone!
   else if (wiringPiMode != WPI_MODE_GPIO)
     return 0 ;
@@ -1919,7 +1919,7 @@ void pinModeAlt (int pin, int mode)
  				pin = physToGpio_BP[pin] ;
  			else if (wiringPiMode == WPI_MODE_GPIO)
  				pin = pinTobcm_BP[pin];//need map A20 to bcm
-			else if (wiringPiMode == WPI_MODE_DIRECT) 
+			else if (wiringPiMode == WPI_MODE_DIRECT) {}
 				// leave well alone!
  			else return;
  				
@@ -1935,7 +1935,7 @@ void pinModeAlt (int pin, int mode)
       pin = pinToGpio [pin] ;
     else if (wiringPiMode == WPI_MODE_PHYS)
       pin = physToGpio [pin] ;
-    else if (wiringPiMode == WPI_MODE_DIRECT) 
+    else if (wiringPiMode == WPI_MODE_DIRECT) {}
       // leave well alone!
     else if (wiringPiMode != WPI_MODE_GPIO)
       return ;
@@ -1973,7 +1973,7 @@ void pinMode (int pin, int mode)
 					pin = physToGpio_BP[pin] ;
 				else if (wiringPiMode == WPI_MODE_GPIO)
 					pin=pinTobcm_BP[pin];//need map A20 to bcm
-				else if (wiringPiMode == WPI_MODE_DIRECT) 
+				else if (wiringPiMode == WPI_MODE_DIRECT) {}
 					// leave well alone!
 				else return ;
 				
@@ -2027,7 +2027,7 @@ void pinMode (int pin, int mode)
       pin = pinToGpio [pin] ;
     else if (wiringPiMode == WPI_MODE_PHYS)
       pin = physToGpio [pin] ;
-    else if (wiringPiMode == WPI_MODE_DIRECT) 
+    else if (wiringPiMode == WPI_MODE_DIRECT) {}
       // leave well alone!
     else if (wiringPiMode != WPI_MODE_GPIO)
       return ;
@@ -2110,7 +2110,7 @@ if(BPRVER == version)
 					pin = physToGpio_BP[pin] ;
 				else if (wiringPiMode == WPI_MODE_GPIO)
 					pin=pinTobcm_BP[pin];//need map A20 to bcm
-				else if (wiringPiMode == WPI_MODE_DIRECT) 
+				else if (wiringPiMode == WPI_MODE_DIRECT) {}
 					// leave well alone!
 				else return ;
 				if (wiringPiDebug)
@@ -2141,7 +2141,7 @@ if(BPRVER == version)
       pin = pinToGpio [pin] ;
     else if (wiringPiMode == WPI_MODE_PHYS)
       pin = physToGpio [pin] ;
-    else if (wiringPiMode == WPI_MODE_DIRECT) 
+    else if (wiringPiMode == WPI_MODE_DIRECT) {}
       // leave well alone!
     else if (wiringPiMode != WPI_MODE_GPIO)
       return ;
@@ -2206,7 +2206,7 @@ int digitalRead (int pin)
 					pin = physToGpio_BP[pin] ;
 				else if (wiringPiMode == WPI_MODE_GPIO)
 					pin=pinTobcm_BP[pin];//need map A20 to bcm
-				else if (wiringPiMode == WPI_MODE_DIRECT) 
+				else if (wiringPiMode == WPI_MODE_DIRECT) {}
 					// leave well alone!
 				else
 					return LOW ;
@@ -2265,7 +2265,7 @@ int digitalRead (int pin)
       pin = pinToGpio [pin] ;
     else if (wiringPiMode == WPI_MODE_PHYS)
       pin = physToGpio [pin] ;
-    else if (wiringPiMode == WPI_MODE_DIRECT) 
+    else if (wiringPiMode == WPI_MODE_DIRECT) {}
       // leave well alone!
     else if (wiringPiMode != WPI_MODE_GPIO)
       return LOW ;
@@ -2337,7 +2337,7 @@ void digitalWrite (int pin, int value)
 					   pin = physToGpio_BP[pin] ;
 					else if (wiringPiMode == WPI_MODE_GPIO)
 					    pin=pinTobcm_BP[pin];//need map A20 to bcm
-					else if (wiringPiMode == WPI_MODE_DIRECT) 
+					else if (wiringPiMode == WPI_MODE_DIRECT) {}
 						// leave well alone!
 					else  return ;
 				   if(-1 == pin){
@@ -2372,7 +2372,7 @@ void digitalWrite (int pin, int value)
       pin = pinToGpio [pin] ;
     else if (wiringPiMode == WPI_MODE_PHYS)
       pin = physToGpio [pin] ;
-    else if (wiringPiMode == WPI_MODE_DIRECT) 
+    else if (wiringPiMode == WPI_MODE_DIRECT) {}
       // leave well alone!
     else if (wiringPiMode != WPI_MODE_GPIO)
       return ;
