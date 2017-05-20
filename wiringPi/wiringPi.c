@@ -1921,6 +1921,7 @@ void pinModeAlt (int pin, int mode)
  				return;
  			sunxi_set_gpio_mode(pin, mode);
  		}
+  }
 	 
   if ((pin & PI_GPIO_MASK) == 0)		// On-board pin
   {
