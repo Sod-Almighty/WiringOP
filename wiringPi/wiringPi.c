@@ -1094,31 +1094,38 @@ void sunxi_set_gpio_mode(int pin,int mode)
 			   regval = readl(phyaddr);
 			   if (wiringPiDebug)
 					printf("Out mode set over reg val: 0x%x\n",regval);
-		  } 
-		  else if(PWM_OUTPUT == mode)
-		  {
-		   // set pin PWMx to pwm mode
-		   regval &= ~(7 << offset);
-		   regval |=  (0x2 << offset);
-		   if (wiringPiDebug)
-				printf(">>>>>line:%d PWM mode ready to set val: 0x%x\n",__LINE__,regval);
-		   writel(regval, phyaddr);
-		   delayMicroseconds (200);
-		   regval = readl(phyaddr);
-		   if (wiringPiDebug)
-				printf("<<<<<PWM mode set over reg val: 0x%x\n",regval);
-		   //clear all reg
-		   writel(0,SUNXI_PWM_CTRL_REG); 
-		   writel(0,SUNXI_PWM_CH0_PERIOD); 
-		   writel(0,SUNXI_PWM_CH1_PERIOD); 
+		} else if (PWM_OUTPUT == mode && pin == 259) {
+			// set pin PWMx to pwm mode
+			regval &= ~(7 << offset);
+			regval |=  (0x2 << offset);
+			if (wiringPiDebug)
+				printf(">>>>>line:%d PWM mode ready to set val: 0x%x\n", __LINE__, regval);
+			writel(regval, phyaddr);
+			delayMicroseconds (200);
+			regval = readl(phyaddr);
+			if (wiringPiDebug)
+				printf("<<<<<PWM mode set over reg val: 0x%x\n", regval);
+			//clear all reg
+			writel(0, SUNXI_PWM_CTRL_REG);
+			writel(0, SUNXI_PWM_CH0_PERIOD);
+			writel(0, SUNXI_PWM_CH1_PERIOD);
 
-		   //set default M:S to 1/2
-		   sunxi_pwm_set_period(1024);
-		   sunxi_pwm_set_act(512);
-		   pwmSetMode(PWM_MODE_MS);
-		   sunxi_pwm_set_clk(PWM_CLK_DIV_120);//default clk:24M/120
-		   delayMicroseconds (200);
-		  }
+			//set default M:S to 1/2
+			sunxi_pwm_set_period(1024);
+			sunxi_pwm_set_act(512);
+			pwmSetMode(PWM_MODE_MS);
+			sunxi_pwm_set_clk(PWM_CLK_DIV_120);//default clk:24M/120
+			delayMicroseconds (200);
+		} else {			// just fucking do it!
+			regval &= ~(7 << offset);
+			regval |=  (mode << offset);
+			if (wiringPiDebug)
+				printf("ready set val: 0x%x\n", regval);
+			writel(regval, phyaddr);
+			regval = readl(phyaddr);
+			if (wiringPiDebug)
+				printf("set over reg val: 0x%x\n", regval);
+		}
 	 }
 	 else 
 	 {
@@ -1899,13 +1906,22 @@ void pinEnableED01Pi (int pin)
 void pinModeAlt (int pin, int mode)
 {
   int fSel, shift ;
- /*add for BananaPro by LeMaker team*/
-  if (BPRVER == version)
-  {
-  		return;
-  }
- /*end 2014.08.19*/
- 
+  /* fuck you LeMaker team */
+  if (BPRVER == version) { // fix for Banana and Orange Pi
+ 		if ((pin & PI_GPIO_MASK) == 0) {		// On-board pin
+ 			if (wiringPiMode == WPI_MODE_PINS)
+ 				pin = pinToGpio_BP [pin] ;
+ 			else if (wiringPiMode == WPI_MODE_PHYS)
+ 				pin = physToGpio_BP[pin] ;
+ 			else if (wiringPiMode == WPI_MODE_GPIO)
+ 				pin = pinTobcm_BP[pin];//need map A20 to bcm
+ 			else return;
+ 				
+ 			if (-1 == pin)  /*VCC or GND return directly*/
+ 				return;
+ 			sunxi_set_gpio_mode(pin, mode);
+ 		}
+	 
   if ((pin & PI_GPIO_MASK) == 0)		// On-board pin
   {
     /**/ if (wiringPiMode == WPI_MODE_PINS)
