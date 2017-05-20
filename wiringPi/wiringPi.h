@@ -34,6 +34,7 @@
 #define	WPI_MODE_GPIO_SYS	 2
 #define	WPI_MODE_PHYS		 3
 #define	WPI_MODE_PIFACE		 4
+#define WPI_MODE_DIRECT 5
 #define	WPI_MODE_UNINITIALISED	-1
 
 // Pin modes
