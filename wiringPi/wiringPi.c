@@ -3208,3 +3208,7 @@ int wiringPiSetupSys (void)
 
   return 0 ;
 }
+
+void wpiMode(int mode) {
+	wiringPiMode = mode;
+}
